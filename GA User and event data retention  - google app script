@@ -1,0 +1,120 @@
+function GASettingProperty() {
+
+	var DataArray = [];
+	var DataPush = [];
+	DataPush[0] = "account name";
+	DataPush[1] = "account id";
+	DataPush[2] = "webProperties name";
+	DataPush[3] = "webProperties id";
+	DataPush[4] = "profil name";
+	DataPush[5] = "profil id";
+	DataPush[6] = "internalWebPropertyId";
+	DataPush[7] = "websiteUrl";
+	DataPush[8] = "profileCount";
+	DataPush[9] = "created";
+	DataPush[10] = "updated";
+	DataPush[11] = "industryVertical";
+	DataPush[12] = "created";
+	DataPush[13] = "dataRetentionTtl";
+	DataPush[14] = "dataRetentionResetOnNewActivity";
+	DataPush[15] = "update";
+	DataArray.push(DataPush);
+
+	var sheetname = "GA.Setting.Property"; // output sheetname
+	// header
+
+	var accounts = Analytics.Management.AccountSummaries.list(); // download only ones.
+
+	if (accounts.items && accounts.items.length) {
+		// loop for accounts
+		for (var i = 0; i < accounts.items.length; i++) {
+			var account = accounts.items[i];
+			if ((account.id != "2") && //skippet ga acc id
+				(account.id != "3") && //skippet ga acc
+				(account.id != "33"))  //skippet ga acc
+			{
+
+
+				Logger.log("acc id:" + " " + account.id);
+
+				try {
+					// loop for property of account
+					if (account.webProperties.length && account.webProperties.length) {
+						for (var y = 0; y < account.webProperties.length; y++) {
+							DataPush = [];
+							DataPush[0] = account.name.toString();
+							DataPush[1] = account.id.toString();
+							DataPush[2] = account.webProperties[y].name.toString();
+							DataPush[3] = account.webProperties[y].id.toString();
+							DataPush[4] = "profil name";
+							DataPush[5] = "profil id";
+							try {
+								var ResponseData = Analytics.Management.Webproperties.get(account.id, account.webProperties[y].id)
+								DataPush[6] = ResponseData.internalWebPropertyId;
+								DataPush[7] = ResponseData.websiteUrl;
+								DataPush[8] = ResponseData.profileCount.toString();
+								DataPush[9] = ResponseData.created;
+								DataPush[10] = ResponseData.updated;
+								DataPush[11] = ResponseData.industryVertical;
+								DataPush[12] = ResponseData.defaultProfileId;
+								DataPush[13] = ResponseData.dataRetentionTtl;
+								DataPush[14] = ResponseData.dataRetentionResetOnNewActivity;
+								var state = "no update"
+								var mydataRetentionTtl = "INDEFINITE";   //  "INDEFINITE"  or MONTHS_26
+								if (mydataRetentionTtl != ResponseData.dataRetentionTtl) {
+									try {
+										var body = {
+											'accountId': account.id.toString(),
+											'webPropertyId': account.webProperties[y].id.toString(),
+											"dataRetentionTtl": mydataRetentionTtl,
+											"dataRetentionResetOnNewActivity": true,
+											"websiteUrl": ResponseData.websiteUrl,
+											"name": account.webProperties[y].name.toString()
+										};
+
+										var ResponseData2 = Analytics.Management.Webproperties.update(body, account.id.toString(), account.webProperties[y].id.toString());
+										Logger.log("update dataRetentionTtl" + account.name + " " + account.webProperties[y].name); //;;Object.values(DataArray));
+										state = "update"
+
+									} catch (err) {
+										Logger.log("fail update:" + err + " " + account.name + " " + account.webProperties[y].name);
+									}
+								}
+
+								DataPush[15] = state;
+
+								Logger.log("profil:" + account.webProperties[y].name);
+							} catch (err) {
+								Logger.log("fail:" + err + " " + account.name + " " + account.webProperties[y].name);
+							}
+							DataArray.push(DataPush);
+						}
+					}
+				} catch (err) {
+					Logger.log("fail:" + err + " " + account.name + " aac without webProperties");
+				}
+			}
+		}
+	} else {
+		Logger.log('No accounts found.');
+		DataPush[0] = "No accounts found";
+		DataArray.push(DataPush);
+	}
+
+	try {
+		SpreadsheetApp.getActiveSpreadsheet().insertSheet(sheetname);
+	} catch (err) {
+		Logger.log('fail.' + err);
+	}
+	try {
+		var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetname);
+	} catch (err) {
+		Logger.log('fail.' + err);
+	}
+	try {
+		sheet.getRange(1, 1, DataArray.length, DataArray[0].length).setValues(DataArray);
+	} catch (err) {
+		Logger.log('fail.' + err + "" + DataArray.length + " " + DataArray[0].length);
+	}
+
+}
