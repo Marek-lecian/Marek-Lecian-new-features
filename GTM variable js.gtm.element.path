@@ -3,7 +3,7 @@
 // It also works for viewing and other types of events.
 // Marek Lecian - Creative Commons Attribution-ShareAlike 4.0 International - 27.8.2018
 
-//Name - js.gtm.element.path
+// Name - js.gtm.element.path
 function() {
   var el = {{Click Element}};
   var stack = [];
