@@ -1,0 +1,33 @@
+// Google tag manager javascript variable 
+// The function returning the css selector of the clicked element.
+// It also works for viewing and other types of events.
+// Marek Lecian - Creative Commons Attribution-ShareAlike 4.0 International - 27.8.2018
+
+//Name - js.gtm.element.path
+function() {
+  var el = {{Click Element}};
+  var stack = [];
+  while ( el.parentNode != null ) {
+    var sibCount = 0;
+    var sibIndex = 0;
+    for ( var i = 0; i < el.parentNode.childNodes.length; i++ ) {
+      var sib = el.parentNode.childNodes[i];
+      if ( sib.nodeName == el.nodeName ) {
+        if ( sib === el ) {
+          sibIndex = sibCount;
+        }
+        sibCount++;
+      }
+    }
+    if ( el.hasAttribute('id') && el.id != '' ) {
+      stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
+    } else if ( sibCount > 1 ) {
+      stack.unshift(el.nodeName.toLowerCase() + ':eq(' + sibIndex + ')');
+    } else {
+      stack.unshift(el.nodeName.toLowerCase());
+    }
+    el = el.parentNode;
+  }
+
+  return (stack.slice(1)).join(' > '); 
+}
