@@ -1,0 +1,32 @@
+// Google tag manager JS variable script.
+// Why? 
+// gtm.click does not return the URL because the element is nested and does not work for it gtm.linkClick
+// Solution:
+// Find the closest link using javascript in DOM..
+
+
+// Name: js.gtm.click.closes.link.href
+// Closest URL for GTM.click
+function () {
+	var elementt = {{Click Element}};
+	while (!elementt.href && !elementt.matches('body')) {
+		elementt = elementt.parentElement;
+	}
+	return elementt.href;
+
+}
+
+
+// Name : js.gtm.click.closes.link.hostname
+// Closest URL hostname for GTM.click
+
+function () {
+	var elementt = {{Click Element}};
+	while (!elementt.href && !elementt.matches('body')) {
+		elementt = elementt.parentElement;
+	};
+	var parser = document.createElement('a');
+	parser.href = elementt.href;
+	return (parser.host);
+
+}
