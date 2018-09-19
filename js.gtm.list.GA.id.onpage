@@ -1,0 +1,14 @@
+// Google tag manager JS variable script
+// Why?
+// The client can insert his GA on the web.
+// I want to know all GAIDs running on my page.
+// I'm sending when user leave the page, event from listener "beforeunload"
+
+// Name: js.gtm.list.GA.id.onpage
+function () {
+	return ga.getAll().map(function (prod) 
+                          {return prod.b.data.values[":trackingId"];})
+	                         .filter(function (elem, index, self)
+                              {return index == self.indexOf(elem);})
+	                               .join(" ").trim();
+}
