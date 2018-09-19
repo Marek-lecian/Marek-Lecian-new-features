@@ -25,8 +25,11 @@ function () {
 	while (!elementt.href && !elementt.matches('body')) {
 		elementt = elementt.parentElement;
 	};
-	var parser = document.createElement('a');
-	parser.href = elementt.href;
-	return (parser.host);
+	if (elementt.href) {
+		var parser = document.createElement('a');
+		parser.href = elementt.href;
+		return (parser.host);
+	}
+	return;
 
 }
