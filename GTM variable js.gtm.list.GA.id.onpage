@@ -3,7 +3,7 @@
 // The client can insert his GA on the web.
 // I want to know all GAIDs running on my page.
 // I'm sending when user leave the page, event from listener "beforeunload"
-// Marek Lecian - Creative Commons Attribution-ShareAlike 4.0 International - 27.8.2018
+// Marek Lecian - Creative Commons Attribution-ShareAlike 4.0 International - 24.9.2018
 
 
 // Name: js.gtm.list.GA.id.onpage
