@@ -3,6 +3,7 @@
 // gtm.click does not return the URL because the element is nested and does not work for it gtm.linkClick
 // Solution:
 // Find the closest link using javascript in DOM..
+// Marek Lecian - Creative Commons Attribution-ShareAlike 4.0 International - 24.9.2018
 
 
 // Name: js.gtm.click.closes.link.href
