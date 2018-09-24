@@ -1,4 +1,5 @@
-﻿  function preklad(weatherstring) {
+// Marek Lecian - Creative Commons Attribution-ShareAlike 4.0 International - 24.9.2018﻿ 
+function preklad(weatherstring) {
              if( weatherstring ==="AM Clouds / PM Sun") {return "mraky slunce";}
         else if( weatherstring ==="AM Drizzle") {return "mrholení";}
         else if( weatherstring ==="AM Drizzle / Wind") {return "mrholení vítr";}
