@@ -1,0 +1,94 @@
+<script>
+// 
+// Google tag manager tracking for HTML5 Audio
+// https://www.w3schools.com/html/html5_audio.asp
+// Marek Lecian - Creative Commons Attribution-ShareAlike 4.0 International - 08.10.2018
+//
+
+
+
+(function () {
+	var divisor = 25;
+	var audios_status = {};
+	function eventHandler(e) {
+		switch (e.type) {
+		case 'timeupdate':
+			audios_status[e.target.id].current = Math.round(e.target.currentTime);
+			var pct = Math.floor(100 * audios_status[e.target.id].current / e.target.duration);
+			for (var j in audios_status[e.target.id]._progress_markers) {
+				if (pct >= j && j > audios_status[e.target.id].greatest_marker) {
+					audios_status[e.target.id].greatest_marker = j;
+				}
+			}
+			if (audios_status[e.target.id].greatest_marker && !audios_status[e.target.id]._progress_markers[audios_status[e.target.id].greatest_marker]) {
+				audios_status[e.target.id]._progress_markers[audios_status[e.target.id].greatest_marker] = true;
+				dataLayer.push({
+					'event': 'audio',
+					'eventCategory': 'audio',
+					'eventAction': audios_status[e.target.id].greatest_marker + '%',
+					'eventLabel': decodeURIComponent(e.target.currentSrc),
+					'eventValue': 0,
+					'eventNonInteraction': false
+				});
+			}
+			break;
+		case 'play':
+			dataLayer.push({
+				'event': 'audio',
+				'eventCategory': 'audio',
+				'eventAction': 'play',
+				'eventLabel': decodeURIComponent(e.target.currentSrc),
+				'eventValue': 0,
+				'eventNonInteraction': false
+			});
+			break;
+		case 'pause':
+			dataLayer.push({
+				'event': 'audio',
+				'eventCategory': 'audio',
+				'eventAction': 'pause',
+				'eventLabel': decodeURIComponent(e.target.currentSrc),
+				'eventValue': audios_status[e.target.id].current,
+				'eventNonInteraction': false
+			});
+			break;
+		case 'ended':
+			dataLayer.push({
+				'event': 'audio',
+				'eventCategory': 'audio',
+				'eventAction': '100%',
+				'eventLabel': decodeURIComponent(e.target.currentSrc),
+				'eventValue': 1,
+				'eventNonInteraction': false
+				
+			});
+			break;
+		default:
+			break;
+		}
+	}
+	var audios = document.getElementsByTagName('audio');
+	for (var i = 0; i < audios.length; i++) {
+		var audioTagId;
+		if (!audios[i].getAttribute('id')) {
+			audioTagId = 'html5_audio_' + Math.random().toString(36).slice(2);
+			audios[i].setAttribute('id', audioTagId);
+		} else {
+			audioTagId = audios[i].getAttribute('id');
+		}
+		audios_status[audioTagId] = {};
+		audios_status[audioTagId].greatest_marker = 0;
+		audios_status[audioTagId]._progress_markers = {};
+		for (j = 0; j < 100; j++) {
+			audios_status[audioTagId].progress_point = divisor * Math.floor(j / divisor);
+			audios_status[audioTagId]._progress_markers[audios_status[audioTagId].progress_point] = false;
+		}
+		audios_status[audioTagId].current = 0;
+		audios[i].addEventListener("play", eventHandler, false);
+		audios[i].addEventListener("pause", eventHandler, false);
+		audios[i].addEventListener("ended", eventHandler, false);
+		audios[i].addEventListener("timeupdate", eventHandler, false);
+		audios[i].addEventListener("ended", eventHandler, false);
+	}
+})();
+</script>
