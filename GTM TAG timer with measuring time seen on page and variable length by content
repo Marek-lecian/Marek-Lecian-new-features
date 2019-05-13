@@ -1,0 +1,66 @@
+// Full version
+<script>var TimerDynamicSetting = {
+      count: 0,
+      repeat: 2, 
+      active: 1, // Is timmer active?
+      customtime: 10000 // Minimum timer time in seconds
+    },
+    TimerDynamicvar;
+
+ // Setting time according to content length
+ // dl.pagePostType2 - Wordpress variable from plugin DuracellTomi's Google Tag Manager for WordPress
+  try {
+    if ({{dl.pagePostType2}}.includes("single-")) {
+      TimerDynamicSetting.customtime = TimerDynamicSetting.customtime + Math.floor((document.querySelector("#main")
+.innerText.replace(/(^\s*)|(\s*$)/gi, "")
+.replace(/[ ]{2,}/gi, " ").replace(/\n /, "\n")
+.split(' ').length / 228) * 60 * 0.25) * 1000;
+    }
+  } catch (e) {;};
+
+  //Timer with pause and resume function
+  function TimerDynamic(d, e) {
+    var a, b, c = e;
+    this.pause = function() {
+      window.clearTimeout(a);
+      c -= new Date - b;
+    };
+    this.resume = function() {
+      b = new Date;
+      window.clearTimeout(a);
+      a = window.setTimeout(d, c);
+    };
+    this.resume();
+  }
+
+  function TimerDynamicStart() {
+    TimerDynamicSetting.active = 1;
+    TimerDynamicvar = new TimerDynamic(function() {
+      TimerDynamicSetting.count += 1;
+      TimerDynamicSetting.active = 0;
+      dataLayer.push({
+        event: "TimerDynamic",
+        "TimerDynamic.count": TimerDynamicSetting.count,
+        "TimerDynamic.repeat": TimerDynamicSetting.repeat,
+        "TimerDynamic.customtime": TimerDynamicSetting.customtime * 0.001
+      });
+      clearTimeout(TimerDynamicvar);
+      TimerDynamicSetting.count < TimerDynamicSetting.repeat && TimerDynamicStart();
+    }, TimerDynamicSetting.customtime);
+  }
+
+  function handleVisibilityChangeForTimmer() {
+    "hidden" == document.visibilityState ? 1 === TimerDynamicSetting.active && TimerDynamicvar.pause() : (dataLayer.push({
+      event: "visibilityChange.on"
+    }), 1 === TimerDynamicSetting.active && TimerDynamicvar.resume());
+  }
+  TimerDynamicStart();
+  document.addEventListener("visibilitychange", handleVisibilityChangeForTimmer, !1);</script>
+  
+  
+// minimalist version
+  var TimerDynamicSetting = {count:0, repeat:2, active:1, customtime:10000}, TimerDynamicvar;
+try {{{dl.pagePostType2}}.includes("single-") && (TimerDynamicSetting.customtime += 1000 * Math.floor(document.querySelector("#main").innerText.replace(/(^\s*)|(\s*$)/gi, "").replace(/[ ]{2,}/gi, " ").replace(/\n /, "\n").split(" ").length / 228 * 15));} catch (b) {}
+function dynamictimer(f){var a,b,c=TimerDynamicSetting.customtime;this.pause=function(){window.clearTimeout(a);c-=new Date-b};this.resume=function(){b=new Date;window.clearTimeout(a);a=window.setTimeout(f,c)};this.resume()}
+function DynamicTimerStart(){TimerDynamicSetting.active=1;TimerDynamicvar=new dynamictimer(function(){TimerDynamicSetting.count+=1;TimerDynamicSetting.active=0;dataLayer.push({event:"TimerDynamic","TimerDynamic.count":TimerDynamicSetting.count,"TimerDynamic.repeat":TimerDynamicSetting.repeat,"TimerDynamic.customtime":.001*TimerDynamicSetting.customtime});clearTimeout(TimerDynamicvar);TimerDynamicSetting.count<TimerDynamicSetting.repeat&&DynamicTimerStart()})}DynamicTimerStart();
+document.addEventListener("visibilitychange",function(){"hidden"==document.visibilityState?1===TimerDynamicSetting.active&&TimerDynamicvar.pause():(dataLayer.push({event:"visibilityChange.on"}),1===TimerDynamicSetting.active&&TimerDynamicvar.resume())},!1);
