@@ -1,7 +1,7 @@
 ___INFO___
 
 {
-  "displayName": "Sklik conversion code 2020-04-14",
+  "displayName": "Sklik conversion code",
   "description": "Sklik conversion code\nMore info about Sklik code\nhttps://napoveda.sklik.cz/mereni-uspesnosti/konverze/konverzni-kod/\nBy Marek Lecián",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
@@ -181,6 +181,8 @@ if (query('send_pixel', src)) {
 // Call data.gtmOnSuccess when the tag is finished.
 data.gtmOnSuccess();
 
+// by Marek Lecian 2020-04-14
+
 
 ___WEB_PERMISSIONS___
 
@@ -215,10 +217,6 @@ ___WEB_PERMISSIONS___
           "value": {
             "type": 2,
             "listItem": [
-              {
-                "type": 1,
-                "string": "https://c.imedia.cz/retargeting*"
-              },
               {
                 "type": 1,
                 "string": "https://c.imedia.cz/conv*"
@@ -312,6 +310,6 @@ scenarios:
 
 ___NOTES___
 
-Created on 25/09/2019, 20:13:52
+Created on 25/03/2020, 12:13:52
 
 
