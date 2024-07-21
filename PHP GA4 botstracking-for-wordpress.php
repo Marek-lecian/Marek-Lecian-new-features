@@ -51,7 +51,9 @@ function is_bot($sistema){
 'zgrab','petalsearch','protopage','Miniflux','Feeder','Semanticbot' ,'ImageFetcher','Mastodon' ,'Neevabot','Pleroma','Akkoma','koyu.space','Embedly','Mjukisbyxor','Giant Rhubarb','GozleBot','Friendica','WhatsApp','XenForo','Yeti','MuckRack','PhxBot','Bytespider',
 'GPTBot','SummalyBot','LinkedInBot','SpiderWeb','SpaceCowboys','LCC','Paqlebot','SeznamBot','SeznamHomepage',
 'ChatGPT','Google-Extended','GoogleOther','anthropic','Claude-Web','cohere-ai','Diffbot','FacebookBot','ImagesiftBot','PerplexityBot','Omigili','yacybot','RepoLookoutBot','StractBot','IABot','rss-is-dead','Slackbot',
-		'bot','spider','crawl',
+// 2024-07-19 update
+'Google-InspectionTool','Storebot-Google','Google-InspectionTool','APIs-Google','AdsBot-Google','Mediapartners-Google','Google-Safety','WellKnownBot','ArchiveBot','Sogou','iaskspider','Qwantbot','keys-so-bot',
+'bot','spider','crawl',
         );
 
     foreach($bots as $b){if( stripos( $sistema, $b ) !== false ) return $b;}
