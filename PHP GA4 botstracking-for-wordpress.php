@@ -4,6 +4,8 @@
  *  and ga4bottracking() in php part of header.php
  */
 
+// is_bot from https://github.com/fabiomb/is_bot Extended table to capture general robots
+
 function is_bot($sistema){
     $bots = array(
 'Googlebot','Baiduspider','ia_archiver','R6_FeedFetcher','NetcraftSurveyAgent','Sogou web spider','bingbot','Yahoo! Slurp','facebookexternalhit','PrintfulBot','msnbot','Twitterbot','UnwindFetchor','urlresolver','Butterfly','TweetmemeBot','PaperLiBot',
