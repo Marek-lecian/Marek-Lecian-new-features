@@ -51,10 +51,15 @@ function is_bot($sistema){
 'mediawords','muhstik-scan','page scorer','pcBrowser','plumanalytics','polaris version','probe-image-size','ripz','s1z.ru','satoristudio.net','scan.lol','seobility','seocompany.store','seoscanners','seostar','sexsearcher','sitechecker.pro',
 'siteripz','sogouspider','sp_auditbot','spyfu','sysscan','tAkeOut','trendiction.com','trendiction.de','ubermetrics-technologies.com','voyagerx.com','webgains-bot','webmeup-crawler','webpros.com','webprosbot','x09Mozilla','x22Mozilla','xpymep1.exe','zauba.io',
 'zgrab','petalsearch','protopage','Miniflux','Feeder','Semanticbot' ,'ImageFetcher','Mastodon' ,'Neevabot','Pleroma','Akkoma','koyu.space','Embedly','Mjukisbyxor','Giant Rhubarb','GozleBot','Friendica','WhatsApp','XenForo','Yeti','MuckRack','PhxBot','Bytespider',
-'GPTBot','SummalyBot','LinkedInBot','SpiderWeb','SpaceCowboys','LCC','Paqlebot','SeznamBot','SeznamHomepage',
-'ChatGPT','Google-Extended','GoogleOther','anthropic','Claude-Web','cohere-ai','Diffbot','FacebookBot','ImagesiftBot','PerplexityBot','Omigili','yacybot','RepoLookoutBot','StractBot','IABot','rss-is-dead','Slackbot',
+'GPTBot','SummalyBot','LinkedInBot','SpiderWeb','SpaceCowboys','LCC','Paqlebot', 'imagesift','ows.eu',
+
+// update
+'SeznamBot','SeznamHomepage','ChatGPT','Google-Extended','GoogleOther','anthropic','Claude-Web','cohere-ai','Diffbot','FacebookBot','ImagesiftBot','PerplexityBot','Omigili','yacybot','RepoLookoutBot','StractBot','IABot','rss-is-dead','Slackbot',
+
 // 2024-07-19 update
-'Google-InspectionTool','Storebot-Google','Google-InspectionTool','APIs-Google','AdsBot-Google','Mediapartners-Google','Google-Safety','WellKnownBot','ArchiveBot','Sogou','iaskspider','Qwantbot','keys-so-bot',
+'Google-InspectionTool','Storebot-Google','APIs-Google','AdsBot-Google','Mediapartners-Google','Google-Safety','WellKnownBot','ArchiveBot','Sogou','iaskspider','Qwantbot','keys-so-bot',
+
+// Extended table to capture general robots
 'bot','spider','crawl',
         );
 
