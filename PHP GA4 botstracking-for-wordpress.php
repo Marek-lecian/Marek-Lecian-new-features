@@ -59,6 +59,9 @@ function is_bot($sistema){
 // 2024-07-19 update
 'Google-InspectionTool','Storebot-Google','APIs-Google','AdsBot-Google','Mediapartners-Google','Google-Safety','WellKnownBot','ArchiveBot','Sogou','iaskspider','Qwantbot','keys-so-bot',
 
+// 2024-07-19 update add new openAI searchbot
+'OAI-SearchBot',
+
 // Extended table to capture general robots
 'bot','spider','crawl',
         );
