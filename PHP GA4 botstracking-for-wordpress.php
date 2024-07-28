@@ -86,14 +86,14 @@ if (empty($documentReferer) && $documentReferer !== "0") {
 
 $ga4Params =  array();
 $ga4Params['v'] = "2";
-$ga4Params['tid'] = 'G-XXXXX' ;   // <----------------------------------- your stream ID
+$ga4Params['tid'] = 'G-XXXXX' ;   // <------------ your GA4 measure ID
 $ga4Params['gcs'] = 'G101';
 $ga4Params['gcd'] = '13t3t3t2t5';
 $ga4Params['npa'] = '0';
 $ga4Params['dma_cps'] = 'sypham';
 $ga4Params['dma'] = '1';
 $ga4Params['_rdi'] = '0';
-$ga4Params['tt'] = 'anti-spam';// <----------------------------------- your unique antispam string
+$ga4Params['tt'] = 'anti-spam';// <------------your unique antispam string if you use filter
 $ga4Params['cid'] = "5555";
 $ga4Params['ecid'] = "5555";
 $ga4Params['uid'] = 'anonymous';
