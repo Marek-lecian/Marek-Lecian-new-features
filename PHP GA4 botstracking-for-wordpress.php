@@ -48,21 +48,12 @@ function is_bot($sistema){
 'Webshag','WebsiteExtractor','WebsiteQuester','Website Quester','Webster','Whack','Whacker','Whatweb','Who.is Bot','Widow','WinHTTrack','WiseGuys Robot','Wonderbot','Woobot','Wotbox','Wprecon','Xaldon WebSpider','Xaldon_WebSpider','Xenu','YoudaoBot','Zade',
 'Zauba','Zermelo','Zeus','Zitebot','ZmEu','ZoomBot','ZumBot','ZyBorg','arquivo-web-crawler','arquivo.pt','autoemailspider','backlink-check','cah.io.community','check1.exe','clark-crawler','coccocbot','cognitiveseo','com.plumanalytics','crawl.sogou.com',
 'crawler.feedback','crawler4j','dataforseo.com','demandbase-bot','domainsproject.org','eCatch','evc-batch','facebookscraper','gopher','instabid','internetVista monitor','ips-agent','isitwp.com','iubenda-radar','lwp-request','lwp-trivial','meanpathbot',
-'mediawords','muhstik-scan','page scorer','pcBrowser','plumanalytics','polaris version','probe-image-size','ripz','s1z.ru','satoristudio.net','scan.lol','seobility','seocompany.store','seoscanners','seostar','sexsearcher','sitechecker.pro',
+'mediawords','muhstik-scan','oBot','page scorer','pcBrowser','plumanalytics','polaris version','probe-image-size','ripz','s1z.ru','satoristudio.net','scan.lol','seobility','seocompany.store','seoscanners','seostar','sexsearcher','sitechecker.pro',
 'siteripz','sogouspider','sp_auditbot','spyfu','sysscan','tAkeOut','trendiction.com','trendiction.de','ubermetrics-technologies.com','voyagerx.com','webgains-bot','webmeup-crawler','webpros.com','webprosbot','x09Mozilla','x22Mozilla','xpymep1.exe','zauba.io',
 'zgrab','petalsearch','protopage','Miniflux','Feeder','Semanticbot' ,'ImageFetcher','Mastodon' ,'Neevabot','Pleroma','Akkoma','koyu.space','Embedly','Mjukisbyxor','Giant Rhubarb','GozleBot','Friendica','WhatsApp','XenForo','Yeti','MuckRack','PhxBot','Bytespider',
-'GPTBot','SummalyBot','LinkedInBot','SpiderWeb','SpaceCowboys','LCC','Paqlebot', 'imagesift','ows.eu',
-
-// update
-'SeznamBot','SeznamHomepage','ChatGPT','Google-Extended','GoogleOther','anthropic','Claude-Web','cohere-ai','Diffbot','FacebookBot','ImagesiftBot','PerplexityBot','Omigili','yacybot','RepoLookoutBot','StractBot','IABot','rss-is-dead','Slackbot',
-
-// 2024-07-19 update
-'Google-InspectionTool','Storebot-Google','APIs-Google','AdsBot-Google','Mediapartners-Google','Google-Safety','WellKnownBot','ArchiveBot','Sogou','iaskspider','Qwantbot','keys-so-bot',
-
-// 2024-07-19 update add new openAI searchbot
-'OAI-SearchBot',
-
-// Extended table to capture general robots
+'GPTBot','SummalyBot','LinkedInBot','SpiderWeb','SpaceCowboys','LCC','Paqlebot','SeznamBot','SeznamHomepage','WP Fastest Cache',
+'ChatGPT','Google-Extended','GoogleOther','anthropic','Claude-Web','cohere-ai','Diffbot','FacebookBot','ImagesiftBot','PerplexityBot','Omigili','yacybot','RepoLookoutBot','StractBot','IABot','rss-is-dead','Slackbot',
+'Google-InspectionTool','Storebot-Google','Google-InspectionTool','APIs-Google','AdsBot-Google','Mediapartners-Google','Google-Safety','WellKnownBot','ArchiveBot','Sogou','iaskspider','Qwantbot','keys-so-bot','OAI-SearchBot',
 'bot','spider','crawl',
         );
 
@@ -86,14 +77,14 @@ if (empty($documentReferer) && $documentReferer !== "0") {
 
 $ga4Params =  array();
 $ga4Params['v'] = "2";
-$ga4Params['tid'] = 'G-XXXXX' ;   // <------------ your GA4 measure ID
+$ga4Params['tid'] = 'G-XXXXX' ;   // <----- your GA4 measure ID
 $ga4Params['gcs'] = 'G101';
 $ga4Params['gcd'] = '13t3t3t2t5';
 $ga4Params['npa'] = '0';
 $ga4Params['dma_cps'] = 'sypham';
 $ga4Params['dma'] = '1';
 $ga4Params['_rdi'] = '0';
-$ga4Params['tt'] = 'anti-spam';// <------------your unique antispam string if you use filter
+$ga4Params['tt'] = 'antispam';  // <------ your unique antispam traffic_type
 $ga4Params['cid'] = "5555";
 $ga4Params['ecid'] = "5555";
 $ga4Params['uid'] = 'anonymous';
@@ -104,7 +95,6 @@ $ga4Params['pscdl'] = 'noapi';
 
 $ga4Params['sid'] = floor(microtime(true) * 1000);
 $ga4Params['_p'] = rand(1000000000, 2147483647 );
-//$ga4Params['dp'] = $documentPath;
 $ga4Params['dt'] = 'anonymous';
 $ga4Params['dl'] = urlencode( "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ;
 $ga4Params['dr'] = urlencode($documentReferer);
@@ -128,8 +118,6 @@ $theParamList = "";
 $gurl = 'https://region1.google-analytics.com/g/collect';
 foreach($ga4Params as $key => $value) {$theParamList .= $key."=".$value."&";}
 $utmUrl = $gurl  . "?" .$theParamList;
-
-//echo $utmUrl;
 
 $ch = curl_init();
 curl_setopt($ch,CURLOPT_USERAGENT, "notset");
