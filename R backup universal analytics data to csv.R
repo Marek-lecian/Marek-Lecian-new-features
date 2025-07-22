@@ -17,7 +17,7 @@
 # Pokud stahujete velké webu narazíte na limit počtu stažení za den. Limit je 10k requestů za GA view / den.
 
 # Autor: Marek Lecián
-# Kontakt: marek.lecian@gmail.com
+# Kontakt: contact@mareklecian.cz
 
 # Licence:
 # Licence Creative Commons Attribution-ShareAlike 4.0 International - Uveďte autora, Zachovejte licenci. .
