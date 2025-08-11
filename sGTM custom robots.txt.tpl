@@ -1,4 +1,4 @@
-﻿___INFO___
+___INFO___
 
 {
   "type": "CLIENT",
@@ -19,7 +19,24 @@
 
 ___TEMPLATE_PARAMETERS___
 
-[]
+[
+  {
+    "type": "TEXT",
+    "name": "robots.txt text",
+    "displayName": "robots.txt text value",
+    "simpleValueType": true,
+    "alwaysInSummary": true,
+    "defaultValue": "User-agent: * Disallow: /",
+    "lineCount": 9,
+    "help": "User-agent: * Disallow: /",
+    "valueHint": "User-agent: * Disallow: /"
+  },
+  {
+    "type": "LABEL",
+    "name": "label1",
+    "displayName": ""
+  }
+]
 
 
 ___SANDBOXED_JS_FOR_SERVER___
@@ -174,6 +191,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 11/08/2025, 16:02:03
+Created on 11/08/2025, 16:34:14
 
 
